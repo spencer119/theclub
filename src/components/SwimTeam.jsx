@@ -4,7 +4,7 @@ import { MdEmail, MdLocalPhone } from 'react-icons/md';
 import { GrSwim } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
-const SwimTeam = () => {
+const SwimTeam = ({ addSignup }) => {
   const [swimmers, setSwimmers] = useState([{ firstName: '', lastName: '', age: '0' }]);
 
   const addSwimmer = () => {
@@ -22,6 +22,17 @@ const SwimTeam = () => {
     let newArr = [...swimmers];
     newArr.splice(index, 1);
     setSwimmers(newArr);
+  };
+  const submitSignup = () => {
+    swimmers.forEach((swimmer) => {
+      if (
+        swimmer.firstName !== '' &&
+        swimmer.lastName !== '' &&
+        swimmer.age !== '' &&
+        swimmer.age !== '0'
+      ) {
+      }
+    });
   };
   return (
     <>
@@ -120,6 +131,11 @@ const SwimTeam = () => {
             <Checkbox size='sm'>
               Are you interested in recieving future emails about swim team signups?
             </Checkbox>
+          </Grid>
+          <Grid xs={12} justify='center'>
+            <Button color='primary' onClick={() => addSignup()}>
+              Submit
+            </Button>
           </Grid>
         </Grid.Container>
       </Container>
