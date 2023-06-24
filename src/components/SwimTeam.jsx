@@ -1,28 +1,18 @@
-import React, { useState } from "react";
-import {
-  Grid,
-  Input,
-  Container,
-  Text,
-  Checkbox,
-  Row,
-  Button,
-} from "@nextui-org/react";
-import { MdEmail, MdLocalPhone } from "react-icons/md";
-import { GrSwim } from "react-icons/gr";
-import { Link } from "react-router-dom";
-import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
-import validator from "validator";
-import { addSignup } from "../App";
+import React, { useState } from 'react';
+import { Grid, Input, Container, Text, Checkbox, Row, Button } from '@nextui-org/react';
+import { MdEmail, MdLocalPhone } from 'react-icons/md';
+import { GrSwim } from 'react-icons/gr';
+import { Link } from 'react-router-dom';
+import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
+import validator from 'validator';
+import { addSignup } from '../App';
 const SwimTeam = ({ addSignup }) => {
-  const [swimmers, setSwimmers] = useState([
-    { firstName: "", lastName: "", age: "0" },
-  ]);
+  const [swimmers, setSwimmers] = useState([{ firstName: '', lastName: '', age: '0' }]);
   const [parent, setParent] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
     futureEmails: false,
   });
   const toggleEmail = (e) => {
@@ -31,12 +21,10 @@ const SwimTeam = ({ addSignup }) => {
     setParent(newArr);
   };
   const addSwimmer = () => {
-    setSwimmers([...swimmers, { firstName: "", lastName: "" }]);
-    // let newArr = swimmers;
-    // newArr.push({ firstName: '', lastName: '' });
-    // setSwimmers(newArr);
+    setSwimmers([...swimmers, { firstName: '', lastName: '', age: '0' }]);
   };
   const updateSwimmers = (e, index) => {
+    console.log(index);
     let newArr = [...swimmers];
     newArr.at(index)[e.target.name] = e.target.value;
     setSwimmers(newArr);
@@ -48,16 +36,16 @@ const SwimTeam = ({ addSignup }) => {
   };
   const updateParent = (e) => {
     switch (e.target.id) {
-      case "firstName":
+      case 'firstName':
         setParent({ ...parent, firstName: e.target.value });
         break;
-      case "lastName":
+      case 'lastName':
         setParent({ ...parent, lastName: e.target.value });
         break;
-      case "email":
+      case 'email':
         setParent({ ...parent, email: e.target.value });
         break;
-      case "phone":
+      case 'phone':
         setParent({ ...parent, phone: e.target.value });
         break;
       default:
@@ -67,39 +55,43 @@ const SwimTeam = ({ addSignup }) => {
   const submitSignup = () => {
     swimmers.forEach((swimmer) => {
       if (
-        swimmer.firstName !== "" &&
-        swimmer.lastName !== "" &&
-        swimmer.age !== "" &&
-        swimmer.age !== "0"
+        swimmer.firstName !== '' &&
+        swimmer.lastName !== '' &&
+        swimmer.age !== '' &&
+        swimmer.age !== '0' &&
+        parent.firstName !== '' &&
+        parent.lastName !== '' &&
+        validator.isEmail(parent.email) &&
+        validator.isMobilePhone(parent.phone)
       ) {
+        // Call the addSignup function from App.js
+      } else {
+        console.log(swimmer, parent);
+        return alert('Please fill out all fields');
       }
+      console.log(swimmers, parent);
     });
   };
   return (
     <>
       <Container xs css={{ mt: 5 }}>
-        <Grid.Container justify="center" gap={1}>
-          <Grid xs={12} justify="center">
-            <Link to="/">
+        <Grid.Container justify='center' gap={1}>
+          <Grid xs={12} justify='center'>
+            <Link to='/'>
               <GrSwim size={64} />
             </Link>
           </Grid>
-          <Grid xs={12} justify="center">
+          <Grid xs={12} justify='center'>
             <Text h2>Swim Team Signups</Text>
           </Grid>
-          <Grid
-            xs={12}
-            justify="flex-start"
-            alignContent="center"
-            alignItems="center"
-          >
-            <Row justify="space-between">
+          <Grid xs={12} justify='flex-start' alignContent='center' alignItems='center'>
+            <Row justify='space-between'>
               <Text h4>Swimmer</Text>
               <>
                 <Button
                   icon={<FaPlusCircle />}
                   onClick={() => addSwimmer()}
-                  color="success"
+                  color='success'
                   auto
                   flat
                 >
@@ -114,23 +106,33 @@ const SwimTeam = ({ addSignup }) => {
                 <Grid xs={5}>
                   <Input
                     fullWidth
-                    label="First Name"
-                    placeholder="Swimmer First Name"
+                    label='First Name'
+                    name='firstName'
+                    aria-label='First Name'
+                    placeholder='Swimmer First Name'
+                    value={swimmers[index].firstName}
+                    onChange={(e) => updateSwimmers(e, index)}
                   />
                 </Grid>
                 <Grid xs={4}>
                   <Input
                     fullWidth
-                    label="Last Name"
-                    placeholder="Swimmer Last Name"
+                    name='lastName'
+                    label='Last Name'
+                    placeholder='Swimmer Last Name'
+                    aria-label='Last Name'
+                    value={swimmers[index].lastName}
+                    onChange={(e) => updateSwimmers(e, index)}
                   />
                 </Grid>
                 <Grid xs={2}>
                   <Input
-                    type="number"
+                    type='number'
                     fullWidth
-                    label="Age"
-                    placeholder="0"
+                    name='age'
+                    label='Age'
+                    aria-label='Age'
+                    placeholder='0'
                     onChange={(e) => updateSwimmers(e, 0)}
                   />
                 </Grid>
@@ -139,24 +141,39 @@ const SwimTeam = ({ addSignup }) => {
             ) : (
               <React.Fragment key={index}>
                 <Grid xs={5}>
-                  <Input fullWidth placeholder="Swimmer First Name" />
+                  <Input
+                    fullWidth
+                    placeholder='Swimmer First Name'
+                    name='firstName'
+                    aria-label='First Name'
+                    value={swimmers[index].firstName}
+                    onChange={(e) => updateSwimmers(e, index)}
+                  />
                 </Grid>
                 <Grid xs={4}>
-                  <Input fullWidth placeholder="Swimmer Last Name" />
+                  <Input
+                    fullWidth
+                    name='lastName'
+                    aria-label='Last Name'
+                    placeholder='Swimmer Last Name'
+                    value={swimmers[index].lastName}
+                    onChange={(e) => updateSwimmers(e, index)}
+                  />
                 </Grid>
                 <Grid xs={2}>
                   <Input
-                    type="number"
-                    aria-label="Age"
+                    type='number'
+                    aria-label='Age'
+                    name='age'
                     fullWidth
-                    placeholder="0"
-                    onChange={(e) => updateSwimmers(e, 0)}
+                    placeholder='0'
+                    onChange={(e) => updateSwimmers(e, index)}
                   />
                 </Grid>
                 <Grid xs={1}>
                   <Button
                     auto
-                    color="error"
+                    color='error'
                     icon={<FaMinusCircle />}
                     light
                     rounded
@@ -167,63 +184,58 @@ const SwimTeam = ({ addSignup }) => {
               </React.Fragment>
             );
           })}
-          <Grid xs={12} justify="flex-start">
+          <Grid xs={12} justify='flex-start'>
             <Text h4>Parent</Text>
           </Grid>
           <Grid xs={6}>
             <Input
               fullWidth
-              placeholder="First Name"
-              aria-label="First Name"
+              placeholder='First Name'
+              aria-label='First Name'
               value={parent.firstName}
-              id="firstName"
+              id='firstName'
               onChange={updateParent}
             />
           </Grid>
           <Grid xs={6}>
             <Input
               fullWidth
-              aria-label="Last Name"
-              placeholder="Last Name"
+              aria-label='Last Name'
+              placeholder='Last Name'
               value={parent.lastName}
               onChange={updateParent}
-              id="lastName"
+              id='lastName'
             />
           </Grid>
           <Grid xs={6}>
             <Input
               fullWidth
-              aria-label="Email"
-              placeholder="Email"
+              aria-label='Email'
+              placeholder='Email'
               contentRight={<MdEmail />}
               value={parent.email}
               onChange={updateParent}
-              id="email"
+              id='email'
             />
           </Grid>
           <Grid xs={6}>
             <Input
               fullWidth
-              aria-label="Phone"
-              placeholder="Phone"
+              aria-label='Phone'
+              placeholder='Phone'
               contentRight={<MdLocalPhone />}
               value={parent.phone}
               onChange={updateParent}
-              id="phone"
+              id='phone'
             />
           </Grid>
-          <Grid xs={12} justify="flex-start">
-            <Checkbox
-              size="sm"
-              value={parent.futureEmails}
-              onChange={toggleEmail}
-            >
-              Are you interested in recieving future emails about swim team
-              signups?
+          <Grid xs={12} justify='flex-start'>
+            <Checkbox size='sm' value={parent.futureEmails} onChange={toggleEmail}>
+              Are you interested in recieving future emails about swim team signups?
             </Checkbox>
           </Grid>
-          <Grid xs={12} justify="center">
-            <Button color="primary" onClick={() => addSignup()}>
+          <Grid xs={12} justify='center'>
+            <Button color='primary' onClick={submitSignup}>
               Submit
             </Button>
           </Grid>
