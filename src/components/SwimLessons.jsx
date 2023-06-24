@@ -35,7 +35,11 @@ const SwimLessons = () => {
     newArr.at(index)[e.target.name] = e.target.value;
     setSwimmers(newArr);
   };
-  const updateAbility = (value, index) => {};
+  const updateAbility = (e, index) => {
+    let newArr = [...swimmers];
+    newArr.at(index)['abilityLevel'] = e;
+    setSwimmers(newArr);
+  };
   const removeSwimmer = (index) => {
     let newArr = [...swimmers];
     newArr.splice(index, 1);
@@ -120,7 +124,13 @@ const SwimLessons = () => {
                   />
                 </Grid>
                 <Grid xs={12}>
-                  <Radio.Group size='xs' orientation='horizontal'>
+                  <Radio.Group
+                    size='xs'
+                    orientation='horizontal'
+                    value={swimmers[index].abilityLevel}
+                    onChange={(e) => updateAbility(e, index)}
+                    defaultValue='1'
+                  >
                     <Radio value='0'>Parent and Me</Radio>
                     <Radio value='1'>Beginner 1</Radio>
                     <Radio value='2'>Beginner 2</Radio>
@@ -167,8 +177,10 @@ const SwimLessons = () => {
                   <Radio.Group
                     size='xs'
                     orientation='horizontal'
-                    // value={swimmers[index].abilityLevel}
+                    value={swimmers[index].abilityLevel}
+                    onChange={(e) => updateAbility(e, index)}
                   >
+                    <Radio value='0'>Parent and Me</Radio>
                     <Radio value='1'>Beginner 1</Radio>
                     <Radio value='2'>Beginner 2</Radio>
                     <Radio value='3'>Beginner 3</Radio>
