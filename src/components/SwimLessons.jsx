@@ -15,9 +15,10 @@ import { GrSwim } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 import AbilityModal from './AbilityModal';
+import validator from 'validator';
+import { addSignup } from '../App';
 
 const SwimLessons = () => {
-  const [swimmerCount, setSwimmerCount] = useState(1);
   const [swimmers, setSwimmers] = useState([{ firstName: '', lastName: '', abilityLevel: '' }]);
   const [parent, setParent] = useState({
     firstName: '',
@@ -63,7 +64,21 @@ const SwimLessons = () => {
         break;
     }
   };
-  const submitSignup = () => {};
+  const submitSignup = () => {
+    swimmers.forEach((swimmer) => {
+      if (
+        swimmer.firstName === '' &&
+        swimmer.lastName === '' &&
+        swimmer.abilityLevel === '' &&
+        parent.firstName === '' &&
+        parent.lastName === ''
+      )
+        alert('Please fill out all fields');
+      else if (!validator.isEmail(parent.email)) alert('Please enter a valid email address');
+      else if (validator.isMobilePhone(parent.phone)) alert('Please enter a valid phone number');
+      else addSignup(swimmers, parent);
+    });
+  };
 
   return (
     <>

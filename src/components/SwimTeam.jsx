@@ -55,21 +55,17 @@ const SwimTeam = ({ addSignup }) => {
   const submitSignup = () => {
     swimmers.forEach((swimmer) => {
       if (
-        swimmer.firstName !== '' &&
-        swimmer.lastName !== '' &&
-        swimmer.age !== '' &&
-        swimmer.age !== '0' &&
-        parent.firstName !== '' &&
-        parent.lastName !== '' &&
-        validator.isEmail(parent.email) &&
-        validator.isMobilePhone(parent.phone)
-      ) {
-        // Call the addSignup function from App.js
-      } else {
-        console.log(swimmer, parent);
-        return alert('Please fill out all fields');
-      }
-      console.log(swimmers, parent);
+        swimmer.firstName === '' &&
+        swimmer.lastName === '' &&
+        swimmer.age === '0' &&
+        swimmer.age === '' &&
+        parent.firstName === '' &&
+        parent.lastName === ''
+      )
+        alert('Please fill out all fields');
+      else if (!validator.isEmail(parent.email)) alert('Please enter a valid email address');
+      else if (validator.isMobilePhone(parent.phone)) alert('Please enter a valid phone number');
+      else addSignup(swimmers, parent);
     });
   };
   return (
