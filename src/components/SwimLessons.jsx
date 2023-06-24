@@ -248,28 +248,4 @@ const SwimLessons = () => {
   );
 };
 
-{
-  /* <Grid xs={4}>
-            <Text h4>Swimmer</Text>
-          </Grid>
-          <Grid xs={8} justify='flex-end'>
-            <Button auto light color='primary'>
-              View ability descriptions
-            </Button>
-            <Spacer x={0.5} />
-            <Button icon={<FaPlusCircle />} onClick={() => addSwimmer()} color='success' auto flat>
-              Add swimmer
-            </Button>
-          </Grid> */
-}
-
-{
-  /* <Grid xs={6}>
-            <Input fullWidth placeholder='First Name' />
-          </Grid>
-          <Grid xs={6}>
-            <Input fullWidth placeholder='Last Name' />
-          </Grid> */
-}
-
 export default SwimLessons;
