@@ -7,6 +7,7 @@ import SwimTeam from './components/SwimTeam';
 import SwimLessons from './components/SwimLessons';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Home from './components/Home';
+import Admin from './components/Admin';
 const firebaseConfig = {
   apiKey: 'AIzaSyAFh9v1fwhfq1l5aR3z7wiKzycvfUoaRaM',
   authDomain: 'the-club-a7a51.firebaseapp.com',
@@ -71,6 +72,9 @@ function App() {
             </Route>
             <Route exact path='/swimlesson'>
               <SwimLessons />
+            </Route>
+            <Route exact path='/admin'>
+              <Admin />
             </Route>
           </Switch>
         </Router>
