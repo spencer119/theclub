@@ -5,8 +5,8 @@ import { GrSwim } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 import validator from 'validator';
-import {addDoc, collection, doc, setDoc} from 'firebase/firestore';
-const SwimLessons = ({db}) => {
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+const SwimLessons = ({ db }) => {
   {
     /* Beginner 1, 2, and 3, Parent and me  */
   }
@@ -41,14 +41,14 @@ const SwimLessons = ({db}) => {
   }
   const submit = async () => {
     if (validate()) {
-        const res = await addDoc(collection(db, 'swim-lessons'), {
-          parentFirst,
-          parentLast,
-          email,
-          phone,
-          swimmers
-        })
-        console.log(res)
+      const res = await addDoc(collection(db, 'swim-lessons'), {
+        parentFirst,
+        parentLast,
+        email,
+        phone,
+        swimmers
+      })
+      console.log(res)
     } else alert('Please fill out all fields')
   }
 
@@ -80,7 +80,7 @@ const SwimLessons = ({db}) => {
             <GrSwim size={64} />
           </Grid>
           <Grid xs={12} justify='center'>
-            <Text h2>Swim Lesson Signups</Text>
+            <Text h2>Swim Signups at The Club</Text>
           </Grid>
           <Grid xs={12} justify='flex-start' alignContent='center' alignItems='center'>
             <Row justify='space-between'>
@@ -154,7 +154,7 @@ const SwimLessons = ({db}) => {
                   />
                 </Grid>
                 <Grid xs={2} sm={1}>
-                <Input type='number' fullWidth placeholder='Age' value={swimmers[index].age} onChange={(e) => updateSwimmers(e, index)} name='age' />
+                  <Input type='number' fullWidth placeholder='Age' value={swimmers[index].age} onChange={(e) => updateSwimmers(e, index)} name='age' />
                 </Grid>
                 <Grid xs={1} sm={1}>
                   <Button
@@ -193,15 +193,21 @@ const SwimLessons = ({db}) => {
             <Spacer x={4} />
             <Checkbox label='Private Lessons' value={privateLessons} onChange={(e) => setPrivateLessons(e)} />
           </Grid>
-          <Grid xs={12} justify='flex-start'>
+          {/* <Grid xs={12} justify='flex-start'>
             <Text h4>Are you a member at The Club?</Text>
-          </Grid>
+          </Grid> */}
           <Grid xs={12} justify='flex-start' >
-            <Checkbox label='Yes, I am a member at The Club' value={isMember} onChange={(e) => setIsMember(e)} />
+            <Checkbox label='Are you a member at The Club?' value={isMember} onChange={(e) => setIsMember(e)} />
+          </Grid>
+          {/* <Grid xs={12} justify='flex-start'>
+            <Text h4>Are you a member at The Club?</Text>
+          </Grid> */}
+          <Grid xs={12} justify='flex-start' >
+            <Checkbox label='I would like to receive future swim notifications.' value={isMember} onChange={(e) => setIsMember(e)} />
           </Grid>
           <Spacer y={1} />
           <Grid xs={12} justify='center'>
-            <Button onClick={submit}>Submit</Button>
+            <Button onClick={submit}>Sign Up</Button>
           </Grid>
         </Grid.Container>
       </Container>
