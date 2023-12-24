@@ -131,7 +131,7 @@ const SwimLessons = ({db}) => {
               </React.Fragment>
             ) : (
               <React.Fragment key={index}>
-                <Grid xs={5}>
+                <Grid sm={5} xs={5}>
                   <Input
                     id={index}
                     aria-label='First Name'
@@ -142,7 +142,7 @@ const SwimLessons = ({db}) => {
                     placeholder={`Swimmer #${index + 1} First Name`}
                   />
                 </Grid>
-                <Grid xs={5}>
+                <Grid sm={5} xs={4}>
                   <Input
                     id={index}
                     fullWidth
@@ -153,10 +153,10 @@ const SwimLessons = ({db}) => {
                     name='lastName'
                   />
                 </Grid>
-                <Grid xs={1}>
+                <Grid xs={2} sm={1}>
                 <Input type='number' fullWidth placeholder='Age' value={swimmers[index].age} onChange={(e) => updateSwimmers(e, index)} name='age' />
                 </Grid>
-                <Grid xs={1}>
+                <Grid xs={1} sm={1}>
                   <Button
                     auto
                     color='error'
