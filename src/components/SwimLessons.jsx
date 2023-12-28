@@ -19,6 +19,7 @@ const SwimLessons = ({ db }) => {
   const [isMember, setIsMember] = useState(false);
   const [groupLessons, setGroupLessons] = useState(false);
   const [privateLessons, setPrivateLessons] = useState(false);
+  const [swimTeam, setSwimTeam] = useState(false);
 
   const validate = () => {
     let valid = true;
@@ -186,12 +187,14 @@ const SwimLessons = ({ db }) => {
             <Input fullWidth placeholder='Phone' contentRight={<MdLocalPhone />} value={phone} onChange={(e) => setPhone(e.target.value)} />
           </Grid>
           <Grid xs={12} justify='flex-start'>
-            <Text h4>What type of lessons are you interested in? (Select one or both)</Text>
+            <Text h4>What type of lessons are you interested in? (Select one or multiple)</Text>
           </Grid>
           <Grid xs={12} justify='flex-start'>
             <Checkbox label='Group Lessons' value={groupLessons} onChange={(e) => setGroupLessons(e)} />
             <Spacer x={4} />
             <Checkbox label='Private Lessons' value={privateLessons} onChange={(e) => setPrivateLessons(e)} />
+            <Spacer x={4} />
+            <Checkbox label='Swim Team' value={swimTeam} onChange={(e) => setSwimTeam(e)} />
           </Grid>
           {/* <Grid xs={12} justify='flex-start'>
             <Text h4>Are you a member at The Club?</Text>
