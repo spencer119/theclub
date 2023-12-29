@@ -129,6 +129,24 @@ const SwimLessons = ({ db }) => {
                 <Grid xs={2}>
                   <Input type='number' fullWidth label='Age' placeholder='Age' value={swimmers[index].age} onChange={(e) => updateSwimmers(e, index)} name='age' />
                 </Grid>
+                <Grid xs={12} justify='flex-start'>
+            <Text h5>Choose Swim Lesson Level, Swim Team, or Private Lessons</Text>
+          </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Beginner 1" />
+                </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Beginner 2" />
+                </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Beginner 3" />
+                </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Swim Team" />
+                </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Private Lesson" />
+                </Grid>
               </React.Fragment>
             ) : (
               <React.Fragment key={index}>
@@ -168,6 +186,21 @@ const SwimLessons = ({ db }) => {
                     onClick={() => removeSwimmer(index)}
                   />
                 </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Beginner 1" />
+                </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Beginner 2" />
+                </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Beginner 3" />
+                </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Swim Team" />
+                </Grid>
+                <Grid xs={2}>
+                  <Checkbox size='sm' label="Private Lesson" />
+                </Grid>
               </React.Fragment>
             );
           })}
@@ -186,7 +219,7 @@ const SwimLessons = ({ db }) => {
           <Grid xs={6}>
             <Input fullWidth placeholder='Phone' contentRight={<MdLocalPhone />} value={phone} onChange={(e) => setPhone(e.target.value)} />
           </Grid>
-          <Grid xs={12} justify='flex-start'>
+          {/* <Grid xs={12} justify='flex-start'>
             <Text h4>What type of lessons are you interested in? (Select one or multiple)</Text>
           </Grid>
           <Grid xs={12} justify='flex-start'>
@@ -195,7 +228,7 @@ const SwimLessons = ({ db }) => {
             <Checkbox label='Private Lessons' value={privateLessons} onChange={(e) => setPrivateLessons(e)} />
             <Spacer x={4} />
             <Checkbox label='Swim Team' value={swimTeam} onChange={(e) => setSwimTeam(e)} />
-          </Grid>
+          </Grid> */}
           {/* <Grid xs={12} justify='flex-start'>
             <Text h4>Are you a member at The Club?</Text>
           </Grid> */}
