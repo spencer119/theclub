@@ -7,6 +7,7 @@ import Home from './components/Home';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {
   apiKey: "AIzaSyAFh9v1fwhfq1l5aR3z7wiKzycvfUoaRaM",
   authDomain: "the-club-a7a51.firebaseapp.com",
@@ -19,6 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
+const analytics = getAnalytics(app);
 function App() {
   return (
     <NextUIProvider>

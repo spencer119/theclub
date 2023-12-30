@@ -248,10 +248,16 @@ const SwimLessons = ({ db }) => {
           </Grid>
           <Spacer y={2} />
           <Grid justify='space-around' sm={6} xs={12}>
-            <Button as='a' target='_blank' href={InfoPdf}>See available classes here</Button>
-            <Button as='a' target='_blank' href={LevelPdf}>See class schedule here</Button>
+            <Button as='a' target='_blank' href={InfoPdf}>See Swim Levels</Button>
+            <Button as='a' target='_blank' href={LevelPdf}>See Classes Available Now</Button>
           </Grid>
-          
+          <Spacer y={1} />
+          <Grid xs={12} justify='center'>
+            <Text h3>NOTE: This is an email list, not a signup form</Text>
+          </Grid>
+          <Grid xs={12} justify='center'>
+            <Text h4>Please call the Aspen Club to register for classes. 208-634-5838</Text>
+          </Grid>
           <Spacer y={4} />
 
           <Grid xs={12} justify='center'>
