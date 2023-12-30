@@ -247,7 +247,7 @@ const SwimLessons = ({ db }) => {
             <Checkbox label='I would like to receive future swim notifications.' value={futureEmails} onChange={(e) => setFutureEmails(e)} />
           </Grid>
           <Spacer y={2} />
-          <Grid justify='space-between' sm={6} xs={12}>
+          <Grid justify='space-around' sm={6} xs={12}>
             <Button as='a' target='_blank' href={InfoPdf}>See available classes here</Button>
             <Button as='a' target='_blank' href={LevelPdf}>See class schedule here</Button>
           </Grid>
