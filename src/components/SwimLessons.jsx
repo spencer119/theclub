@@ -3,7 +3,7 @@ import { Grid, Input, Container, Text, Button, Spacer, Row, Checkbox } from '@ne
 import { MdEmail, MdLocalPhone } from 'react-icons/md';
 import { GrSwim } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
-import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
+import { FaPlusCircle, FaMinusCircle, FaCheckCircle } from 'react-icons/fa';
 import validator from 'validator';
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 const SwimLessons = ({ db }) => {
@@ -20,6 +20,8 @@ const SwimLessons = ({ db }) => {
   const [groupLessons, setGroupLessons] = useState(false);
   const [privateLessons, setPrivateLessons] = useState(false);
   const [swimTeam, setSwimTeam] = useState(false);
+  const [futureEmails, setFutureEmails] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
 
   const validate = () => {
     let valid = true;
@@ -47,9 +49,25 @@ const SwimLessons = ({ db }) => {
         parentLast,
         email,
         phone,
-        swimmers
+        swimmers,
+        groupLessons,
+        privateLessons,
+        swimTeam,
+        isMember,
+        futureEmails
       })
       console.log(res)
+      setParentFirst('');
+      setParentLast('');
+      setEmail('');
+      setPhone('');
+      setSwimmers([{ firstName: '', lastName: '', age: 0 }]);
+      setGroupLessons(false);
+      setPrivateLessons(false);
+      setSwimTeam(false);
+      setIsMember(false);
+      setFutureEmails(false);
+      setDidSubmit(true);
     } else alert('Please fill out all fields')
   }
 
@@ -69,7 +87,26 @@ const SwimLessons = ({ db }) => {
     newArr.splice(index, 1);
     setSwimmers(newArr);
   };
-
+  if (didSubmit) return (<>
+    <Container sm css={{ mt: 50 }}>
+    <Grid.Container justify='center' gap={1}>
+    <Grid xs={12} justify='center'>
+        <FaCheckCircle size={64} color='green' />
+      </Grid>
+    <Grid xs={12} justify='center'>
+        <Text h2>Signup Successful</Text>
+      </Grid>
+      <Grid xs={12} justify='center'>
+        <Text h4>You will recieve an email when more information is available</Text>
+      </Grid>
+<Grid xs={12} justify='center'>
+  <Button onClick={() => setDidSubmit(false)}>Return to signup form</Button>
+</Grid>
+    </Grid.Container>
+    </Container>
+  
+  </>)
+  else
   return (
     <>
       <Container sm css={{ mt: 5 }}>
@@ -206,7 +243,7 @@ const SwimLessons = ({ db }) => {
             <Text h4>Are you a member at The Club?</Text>
           </Grid> */}
           <Grid xs={12} justify='flex-start' >
-            <Checkbox label='I would like to receive future swim notifications.' value={isMember} onChange={(e) => setIsMember(e)} />
+            <Checkbox label='I would like to receive future swim notifications.' value={futureEmails} onChange={(e) => setFutureEmails(e)} />
           </Grid>
           <Spacer y={1} />
           <Grid xs={12} justify='center'>
