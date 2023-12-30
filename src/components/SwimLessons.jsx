@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Grid, Input, Container, Text, Button, Spacer, Row, Checkbox } from '@nextui-org/react';
 import { MdEmail, MdLocalPhone } from 'react-icons/md';
 import { GrSwim } from 'react-icons/gr';
-import { Link } from 'react-router-dom';
+import LevelPdf from '../assets/January-February-Swim-Lesson-Schedule.pdf'
+import InfoPdf from '../assets/Swim-Information.pdf'
 import { FaPlusCircle, FaMinusCircle, FaCheckCircle } from 'react-icons/fa';
 import validator from 'validator';
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
@@ -245,9 +246,16 @@ const SwimLessons = ({ db }) => {
           <Grid xs={12} justify='flex-start' >
             <Checkbox label='I would like to receive future swim notifications.' value={futureEmails} onChange={(e) => setFutureEmails(e)} />
           </Grid>
-          <Spacer y={1} />
+          <Spacer y={2} />
+          <Grid justify='space-between' sm={6} xs={12}>
+            <Button as='a' target='_blank' href={InfoPdf}>See available classes here</Button>
+            <Button as='a' target='_blank' href={LevelPdf}>See class schedule here</Button>
+          </Grid>
+          
+          <Spacer y={4} />
+
           <Grid xs={12} justify='center'>
-            <Button onClick={submit}>Sign Up</Button>
+            <Button color='success' size='lg' onClick={submit}>Sign Up</Button>
           </Grid>
         </Grid.Container>
       </Container>
