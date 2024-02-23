@@ -1,13 +1,14 @@
-import './App.css';
-import { NextUIProvider } from '@nextui-org/react';
-import SwimTeam from './components/SwimTeam';
-import SwimLessons from './components/SwimLessons';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import Home from './components/Home';
+import "./App.css";
+import { NextUIProvider } from "@nextui-org/react";
+import SwimTeam from "./components/SwimTeam";
+import SwimLessons from "./components/SwimLessons";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import Home from "./components/Home";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
+import Admin from "./components/Admin";
 const firebaseConfig = {
   apiKey: "AIzaSyAFh9v1fwhfq1l5aR3z7wiKzycvfUoaRaM",
   authDomain: "the-club-a7a51.firebaseapp.com",
@@ -15,16 +16,25 @@ const firebaseConfig = {
   storageBucket: "the-club-a7a51.appspot.com",
   messagingSenderId: "652245206951",
   appId: "1:652245206951:web:e34cef62b8f3e322ee1882",
-  measurementId: "G-6MHD6QQTMS"
+  measurementId: "G-6MHD6QQTMS",
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app)
+const db = getFirestore(app);
 const analytics = getAnalytics(app);
 function App() {
   return (
     <NextUIProvider>
-      <SwimLessons db={db} />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <SwimLessons db={db} />
+          </Route>
+          <Route exact path="/admin">
+            <Admin db={db} />
+          </Route>
+        </Switch>
+      </Router>
       {/* <Router>
         <Switch>
           <Route exact path='/'>
